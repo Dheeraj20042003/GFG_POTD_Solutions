@@ -1,0 +1,59 @@
+class Solution
+{
+    public:
+    /*You are required to complete this method*/
+    int findK(int a[MAX][MAX],int n,int m,int k)
+    {
+
+    int r=0,c=0,i=0;
+
+ 	   while(r<n && c<m)
+ 		{
+ 		    
+ 		   for(i=c;i<m;i++)
+ 		   {
+ 		       k--;
+ 		       if(k==0)
+ 		       {
+ 		           return a[r][i];
+ 		       }
+ 		      
+ 		    
+ 		   }
+ 		  r++;
+ 		  for(i=r; i<n; i++)
+ 		  {
+ 		      k--;
+ 		      if(k==0)
+ 		      {
+ 		          return a[i][m-1];
+ 		      }
+ 		  }
+ 		 m--;
+
+ 		 for( i=m-1;i>=c;i--)
+ 		 {
+ 		     k--;
+ 		     if(k==0)
+ 		     {
+ 		         return a[n-1][i];
+ 		     }
+ 		   
+ 		 }
+ 		 
+ 		n--;
+
+ 		for(i=n-1;i>=r;i--)
+ 		{
+ 		    k--;
+ 		    if(k==0)
+ 		    {
+ 		        return a[i][c];
+ 		    }		
+}
+ 	   c++;
+ 		}
+ 		
+ 	return -1;
+    }
+};
