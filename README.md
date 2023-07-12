@@ -1,1 +1,1 @@
-# GFG_POTD_Solutions
+# GFG_Solutions
