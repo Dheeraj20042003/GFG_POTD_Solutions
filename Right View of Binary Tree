@@ -1,0 +1,47 @@
+class Solution
+{
+    public:
+    //Function to return list containing elements of right view of binary tree.
+    vector<int> rightView(Node *node)
+    {
+        vector<int>sol;
+        if(node==NULL)
+          return sol;
+         queue<Node*>q;
+         q.push(node);
+         sol.push_back(node->data);
+         Node*p;
+         int n = q.size();
+         while(q.size()!=0)
+         {     
+             
+             vector<int>temp;
+             while(n--)
+             {
+              p = q.front();
+              q.pop();
+              if(p->left)
+              {
+                  temp.push_back(p->left->data);
+                  q.push(p->left);
+              }
+              if(p->right)
+              {
+                  temp.push_back(p->right->data);
+                  q.push(p->right);
+              }
+             
+             
+             }
+             
+             n  = q.size();
+             if(temp.size()!=0)
+              {
+                  sol.push_back(temp[temp.size()-1]);
+              }
+         }
+         
+         
+         return sol;
+    }
+};
