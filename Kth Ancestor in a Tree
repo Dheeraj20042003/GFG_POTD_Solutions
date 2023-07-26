@@ -1,0 +1,32 @@
+int kthAncestor(Node *root, int k, int node)
+{
+      unordered_map<int,int>mp;
+      solve(root,mp);
+      
+       int ans=0;
+     
+       while(k--)
+       {
+           ans = mp[node];
+           node = mp[node];
+       }
+      
+      if(ans == 0 )
+         return -1;
+    else
+      return ans;
+}
+void solve(Node*root , unordered_map<int,int>&mp)
+{
+     if(root == NULL)
+       return ;
+     
+     if(root->left)
+     mp[root->left->data] = root->data;
+     
+     if(root->right)
+     mp[root->right->data] = root->data;
+     
+     solve(root->left , mp);
+     solve(root->right,mp);
+}
