@@ -1,0 +1,21 @@
+      queue<int>q;
+      q.push(node);
+      visit[node]= true;
+     
+      while(!q.empty())
+      {  
+          int top = q.front();
+          q.pop();
+         ans.push_back(top);
+          for(auto i:adj[top])
+          {
+                
+               if(!visit[i])
+                {
+                    q.push(i);
+                    visit[i] = true;
+                    
+                }
+          }
+        
+      }
