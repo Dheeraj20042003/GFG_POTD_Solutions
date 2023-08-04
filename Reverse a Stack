@@ -1,0 +1,15 @@
+class Solution{
+public:
+    void Reverse(stack<int> &St){
+        
+           stack<int>temp;
+           
+           while(!St.empty())
+           {
+               temp.push(St.top());
+               St.pop();
+           }
+           
+           St = temp;
+    }
+};
