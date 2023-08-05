@@ -1,0 +1,21 @@
+class Solution{
+    public:
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+     
+     sort(a.begin() , a.end());
+   
+     int ans = INT_MAX;
+     
+     int j = m-1;
+     int i=0;
+     while(j < n)
+     { 
+         int temp = a[j] - a[i];
+         ans = min(ans , temp);
+         i++;
+         j++;
+     }
+    
+    return ans;
+    }   
+};
