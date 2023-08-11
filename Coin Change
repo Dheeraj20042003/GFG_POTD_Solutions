@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    long long int count(int coins[], int N, int sum) {
+
+       vector<long long >dp(sum +1 , 0);
+        dp[0] = 1;
+
+        for(int j=0;j<N;j++)
+        {   
+            int c = coins[j];
+            for(int i=1;i<=sum;i++)
+            {
+               if(i-c >=0 )
+               {
+                   dp[i] +=dp[i-c];
+               }
+            }
+        }
+
+    return dp[sum];
+    }
+};
