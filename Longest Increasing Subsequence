@@ -1,0 +1,28 @@
+class Solution
+{
+    public:
+    //Function to find length of longest increasing subsequence using binary search - O(nlogn).
+
+    int longestSubsequence(int n, int a[])
+    {
+          
+          vector<int>store;
+          store.push_back(a[0]);
+          
+          for(int i=1;i<n;i++)
+          {
+              if(a[i] > store.back())
+              {
+                  store.push_back(a[i]);
+              }
+              else
+              {
+                  int ind = lower_bound(store.begin() , store.end() , a[i]) - store.begin();
+                  
+                  store[ind] = a[i];
+              }
+          }
+          
+        return store.size();
+    }
+};
