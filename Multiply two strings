@@ -1,0 +1,146 @@
+class Solution{
+  public:
+    /*You are required to complete below function */
+    
+
+string mul(string &a , char b , int n)
+{
+    int mul = b-'0';
+    int carry=0;
+    int sum=0;
+    int prod;
+    string temp="";
+    for(int i=a.size()-1;i>=n;i--)
+    {
+        int t = (a[i]-'0');
+        
+        prod = t*mul;
+        prod +=carry;
+        
+        sum = prod%10;
+        carry = prod/10;
+    
+       temp.push_back(sum + '0');
+  
+    }
+    if(carry)
+    {
+        temp.push_back(carry+'0');
+    }
+    reverse(temp.begin() , temp.end());
+    
+  return temp;
+}
+
+
+string add(string &a , string &b , int z)
+{
+    while(z>0)
+    {
+        b.push_back('0');
+        z--;
+    }
+   
+
+   int i=a.size()-1;
+   int j = b.size()-1;
+   int c = 0;
+   int ans=0;
+   string temp="";
+   while(i>=0 || j>=0 || c>=1)
+   {
+        ans+=c;
+        if(i>=0) 
+        {
+            ans += (a[i]-'0');
+            
+        }
+        
+        if(j>=0)
+        {
+            ans += (b[j] -'0');
+        }
+       
+       int res  = ans%10;
+       c = ans/10;
+       ans=0;
+       
+       temp.push_back(res+'0');
+       
+       i--;
+       j--;
+    
+     
+   }
+ 
+    reverse(temp.begin() , temp.end());
+  return temp;
+    
+}
+    string multiplyStrings(string s1, string s2) {
+        
+        int n = s1.size();
+        int m = s2.size();
+        int i=0,j=0;
+        bool neg = false;
+        
+        if(s1[i] == '-')
+         {
+             i++;
+             neg = !neg;
+         }
+        
+        while(i<n && s1[i] == '0')
+        {
+            i++;
+        }
+        
+        if(s2[j] == '-')
+        {
+            j++;
+            neg = !neg;
+        }
+       
+        while(j<m && s2[j] == '0')  
+        {
+            j++;
+        }
+        
+        
+        if(i==n || j==m)  return "0";
+    
+  
+ 
+     string ans="";
+
+     ans = mul(s1,s2[m-1],i);
+   
+     int zero=0;
+     
+    for(int k =m-2;k>=j;k--)
+    {
+        string temp = mul(s1,s2[k],i);
+        zero++;
+        ans = add(ans , temp , zero);
+        
+    } 
+    
+    i=0;
+    while(i<ans.size() && ans[i]=='0')
+      {
+          i++;
+      }
+    
+    if(neg)
+      ans = '-' + ans.substr(i);
+     else
+        ans =  ans.substr(i);
+    
+   
+   return ans;
+        
+        
+    }
+    
+
+};
