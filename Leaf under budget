@@ -1,0 +1,57 @@
+/*
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int x)
+    {
+        data = x;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+class Solution
+{
+public:
+
+void traverse(Node*root , vector<int>&store,int cnt)
+{
+    if(root == NULL)
+     {
+         return;
+     }
+    if(root->left==NULL && root->right==NULL)
+    {   
+        store.push_back(cnt);
+        return;
+    }
+
+   cnt++;
+   traverse(root->left,store,cnt);
+   cnt--;
+   cnt++;
+   traverse(root->right,store,cnt);
+   cnt--;
+}
+    int getCount(Node *root, int k)
+    {
+        vector<int>store;
+        traverse(root,store,1);
+        sort(store.begin(),store.end());
+        int ans=0;
+        for(int i=0;i<store.size();i++)
+        {
+            if(k-store[i] >= 0)
+            {
+                ans++;
+                k =k-store[i];
+            }
+        }
+
+return ans;
+
+    }
+};
