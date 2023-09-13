@@ -1,0 +1,35 @@
+class Solution{
+public:
+    string findLargest(int N, int S){
+      
+      if(S==0 && N>1)
+        return "-1";
+      
+      if(S > N*9)
+          return "-1";
+    
+      int temp=0;
+      string ans="";
+       while(N>0)
+       {
+           if(S>9)
+           {
+               temp=9;
+               S=S-9;
+           }
+           else
+           {
+               temp=S;
+               S=S-temp;
+           }
+          
+           ans  += (temp+'0');
+           N--;
+       }
+       
+     
+      return ans;
+      
+    }
+       
+};
